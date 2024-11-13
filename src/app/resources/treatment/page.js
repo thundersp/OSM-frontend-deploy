@@ -1,3 +1,4 @@
+"use client";
 import WebcamControl from "@/components/WebcamControl";
 import "../../../app/globals.css";
 const Treatment = () => (

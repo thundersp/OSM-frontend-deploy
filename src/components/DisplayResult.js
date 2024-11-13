@@ -1,3 +1,4 @@
+'use client';
 import { useState } from "react";
 import TherapyDetails from "./TherapyDetails"; // Import TherapyDetails component
 

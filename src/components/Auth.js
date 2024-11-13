@@ -1,4 +1,5 @@
 // components/Auth.js
+"use client";
 import { useEffect, useState } from 'react';
 import { signInWithGoogle, logout } from '../lib/firebaseAuth';
 import { auth } from '../lib/firebaseConfig'; // Import Firebase auth

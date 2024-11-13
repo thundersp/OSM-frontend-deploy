@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import '../globals.css'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import "../globals.css";
