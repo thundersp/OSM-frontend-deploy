@@ -185,7 +185,7 @@ const handleKeyDown = (e) => {
               
               {/* Link to toggle to Sign Up */}
               <p className="mt-4 text-xs">
-                Haven't registered yet?{' '}
+                Haven&#39;t registered yet?{' '}
                 <span onClick={() => setIsRightPanelActive(true)} className="text-[#FF4B2B] cursor-pointer font-semibold hover:underline">
                   Sign up
                 </span>

@@ -25,7 +25,7 @@ const Story = ({ story }) => {
                 checked={story.depressionDiagnosis}
                 readOnly
               />
-            How often do you find yourself feeling anxious or worried about not doing something "the right way"?
+            How often do you find yourself feeling anxious or worried about not doing something &#34;the right way&#34;?
             </label>
             <label className="block">
               <input type="checkbox" className="mr-2" checked={story.anxietyDiagnosis} readOnly />
@@ -33,11 +33,11 @@ const Story = ({ story }) => {
             </label>
             <label className="block">
               <input type="checkbox" className="mr-2" checked={story.obsessionType} readOnly />
-              Have you experienced thoughts that, no matter how hard you try, you can't seem to ignore or push away?
+              Have you experienced thoughts that, no matter how hard you try, you can&#39;t seem to ignore or push away?
             </label>
             <label className="block">
               <input type="checkbox" className="mr-2" checked={story.compulsionType} readOnly />
-              Do you worry that something bad will happen to you or your loved ones if you don’t follow certain practices or routines exactly?
+              Do you worry that something bad will happen to you or your loved ones if you don&#39;t follow certain practices or routines exactly?
             </label>
           </div>
 
