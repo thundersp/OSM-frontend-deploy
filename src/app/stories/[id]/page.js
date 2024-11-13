@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
+
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import DisplayResult from '../../../components/DisplayResult';
 import '../../globals.css';
+
 const StoryDetailPage = () => {
     const { id } = useParams();
     const [story, setStory] = useState(null);
@@ -20,14 +23,17 @@ const StoryDetailPage = () => {
     const [result, setResult] = useState(null);
     const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [user, setUser] = useState(null);  // State to store the current user
 
     useEffect(() => {
         const fetchStory = async () => {
             try {
+                console.log("Fetching story with ID:", id);
                 const response = await fetch(`http://localhost:7000/api/stories/${id}`);
                 if (!response.ok) throw new Error('Failed to fetch story');
                 const data = await response.json();
                 setStory(data);
+                console.log("Story data fetched:", data);
             } catch (error) {
                 console.error('Error fetching story:', error);
                 setError(error.message);
@@ -38,7 +44,21 @@ const StoryDetailPage = () => {
         if (id) fetchStory();
     }, [id]);
 
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            if (currentUser) {
+                setUser(currentUser);
+                console.log(currentUser);
+            } else {
+                setUser(null);
+            }
+        });
+        return () => unsubscribe();
+    }, []);
+
     const handleAnswerChange = (field, value) => {
+        console.log(`Answer for ${field} changed to:`, value);  // Log every change in answer
         setAnswers((prevAnswers) => ({
             ...prevAnswers,
             [field]: value
@@ -48,6 +68,7 @@ const StoryDetailPage = () => {
     const handleSubmit = async () => {
         setIsSubmitting(true);
         setResult(null);
+        console.log("Submitting answers:", answers);  // Log the answers before submitting
     
         try {
             const inputData = {
@@ -58,28 +79,61 @@ const StoryDetailPage = () => {
                 'Depression Diagnosis': answers.depressionDiagnosis === 'Yes' ? 1 : 0,
                 'Anxiety Diagnosis': answers.anxietyDiagnosis === 'Yes' ? 1 : 0,
             };
+            
+            console.log("Input Data for Prediction:", inputData); // Log prediction data
     
-            const response = await fetch('http://localhost:5000/predict', {
+            // First, make the prediction request
+            const predictionResponse = await fetch('http://localhost:5000/predict', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(inputData)
+                body: JSON.stringify(inputData),
             });
     
-            if (!response.ok) throw new Error('Failed to submit answers for prediction');
-            const data = await response.json();
-            
+            if (!predictionResponse.ok) {
+                const predictionError = await predictionResponse.text();
+                console.error("Prediction API Error:", predictionError); // Log the error from prediction API
+                throw new Error('Failed to submit answers for prediction');
+            }
+    
+            const predictionData = await predictionResponse.json();
+            console.log("Prediction Data:", predictionData); // Log the prediction result
+    
             setResult({
-                severity: data.predicted_severity,
-                percentage: data.predicted_percentage,
+                severity: predictionData.predicted_severity,
+                percentage: predictionData.predicted_percentage,
             });
+    
+            // Now, save the answers and prediction results to MongoDB
+            const saveResponse = await fetch('http://localhost:7000/api/resultstorage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: user?.email, // Use the user state here
+                    result: {
+                        severity: predictionData.predicted_severity,
+                        percentage: predictionData.predicted_percentage,
+                        answers: inputData,
+                    },
+                }),
+            });
+    
+            if (!saveResponse.ok) {
+                const saveError = await saveResponse.text();
+                console.error("Save Response Error:", saveError); // Log error details from saving process
+                throw new Error('Failed to save answers to database');
+            }
+    
+            const saveData = await saveResponse.json();
+            console.log('Answers saved:', saveData); // Log the success response
+    
         } catch (error) {
-            console.error('Error submitting answers:', error);
+            console.error('Error submitting answers:', error); // Log the error details
             setError(error.message);
         } finally {
             setIsSubmitting(false);
         }
     };
-
+    
     const currentChapter = story?.chapters?.[currentChapterIndex];
 
     if (loading) return <div>Loading...</div>;
@@ -177,15 +231,14 @@ const StoryDetailPage = () => {
                                         </select>
                                     ) : (
                                         question.options.map((option, optIndex) => (
-                                            <label key={optIndex} className="inline-flex items-center mr-4">
+                                            <label key={optIndex} className="block">
                                                 <input
                                                     type="radio"
                                                     name={`question_${index}`}
                                                     value={option}
-                                                    onChange={(e) =>
-                                                        handleAnswerChange(`question_${index}`, e.target.value)
+                                                    onChange={() =>
+                                                        handleAnswerChange(`question_${index}`, option)
                                                     }
-                                                    className="mr-2"
                                                 />
                                                 {option}
                                             </label>
@@ -194,17 +247,15 @@ const StoryDetailPage = () => {
                                 </div>
                             ))}
                         </div>
-                    </div>
-                </div>
 
-                <div className="mt-5">
-                    <button
-                        className="px-6 py-3 bg-green-500 text-white rounded"
-                        onClick={handleSubmit}
-                        disabled={isSubmitting}
-                    >
-                        Submit
-                    </button>
+                        <button
+                            onClick={handleSubmit}
+                            className={`mt-5 px-4 py-2 rounded ${isSubmitting ? 'bg-gray-500' : 'bg-blue-500'}`}
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? 'Submitting...' : 'Submit'}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
