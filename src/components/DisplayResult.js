@@ -14,11 +14,21 @@ const fieldLabels = {
 };
 
 const DisplayResult = ({ result, answers, storyId }) => {
-  const [showTherapy, setShowTherapy] = useState(false); // State to control therapy visibility
+  const [therapy, setTherapy] = useState(null); // State to store therapy data
 
-  const toggleTherapy = () => {
-    setShowTherapy(!showTherapy); // Toggle the visibility of therapy details
-  };
+  // Fetch therapy details when storyId changes
+  useEffect(() => {
+    if (storyId) {
+      fetch(`http://localhost:7000/api/stories/therapy-suggested/${storyId}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setTherapy(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching therapy data:", error);
+        });
+    }
+  }, [storyId]);
 
   return (
     <div className="result-container flex justify-center items-center min-h-[calc(100vh-20px)] -mt-5">
@@ -41,18 +51,20 @@ const DisplayResult = ({ result, answers, storyId }) => {
           ))}
         </ul>
 
-        {/* Button to toggle therapy visibility */}
-        <div className="mt-4">
-          <button
-            className="px-6 py-3 bg-green-500 text-white rounded"
-            onClick={toggleTherapy}
-          >
-            {showTherapy ? "Hide Therapy" : "See Therapy Details"}
-          </button>
-        </div>
-
-        {/* Conditionally render the TherapyDetails component */}
-        {showTherapy && <TherapyDetails storyId={storyId} />}
+        {/* Directly render Therapy details if available */}
+        {therapy && (
+          <div className="therapy-details mt-6">
+            <h3 className="text-2xl text-left text-[#ff4b2b] mb-4">Suggested Therapy</h3>
+            <h4 className="text-xl mb-4">{therapy.title}</h4>
+            {therapy.chapters.map((chapter, index) => (
+              <div key={index} className="mb-6">
+                <h5 className="text-lg font-semibold">{chapter.title}</h5>
+                <p className="text-sm">{chapter.exercise}</p>
+                <p className="text-sm mt-2">{chapter.activity}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

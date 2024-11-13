@@ -140,7 +140,7 @@ const StoryDetailPage = () => {
     if (error) return <div>Error: {error}</div>;
 
     if (result) {
-        return <DisplayResult result={result} answers={answers} />;
+        return <DisplayResult result={result} answers={answers} storyId={id}/>;
     }
 
     return (
