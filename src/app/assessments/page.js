@@ -44,7 +44,7 @@ const AssessmentPage = () => {
   
     // Send the form data to the backend API (POST request)
     try {
-      const response = await fetch('http://localhost:7000/api/responses', {  // Change URL to backend server
+      const response = await fetch('https://osm-backend-deploy-1.onrender.com/api/responses', {  // Change URL to backend server
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -29,7 +29,7 @@ const StoryDetailPage = () => {
         const fetchStory = async () => {
             try {
                 console.log("Fetching story with ID:", id);
-                const response = await fetch(`http://localhost:7000/api/stories/${id}`);
+                const response = await fetch(`https://osm-backend-deploy-1.onrender.com/api/stories/${id}`);
                 if (!response.ok) throw new Error('Failed to fetch story');
                 const data = await response.json();
                 setStory(data);
@@ -104,7 +104,7 @@ const StoryDetailPage = () => {
             });
     
             // Now, save the answers and prediction results to MongoDB
-            const saveResponse = await fetch('http://localhost:7000/api/resultstorage', {
+            const saveResponse = await fetch('https://osm-backend-deploy-1.onrender.com/api/resultstorage', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
