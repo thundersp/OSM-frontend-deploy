@@ -7,7 +7,7 @@ const WebcamControl = () => {
 
     useEffect(() => {
         const img = imgRef.current;
-        img.src = 'http://localhost:5000/video_feed';
+        img.src = 'https://osm-backend-deploy-ph1s.onrender.com/video_feed';
     }, []);
 
     return (
