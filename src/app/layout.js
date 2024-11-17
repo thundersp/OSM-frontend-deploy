@@ -7,6 +7,9 @@ import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 export const metadata = {
   title: "OCDetect",
   description: "Something to detect OCD",
+  icons: {
+    icon: "https://res.cloudinary.com/domzgxu5n/image/upload/v1731849965/ht1h8g4uvbdvgjrmniy3.jpg", // Favicon URL
+  },
 };
 
 export default function RootLayout({ children }) {
