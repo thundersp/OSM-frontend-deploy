@@ -3,7 +3,6 @@ import About from "../components/About";
 import Contactus from "../components/Contactus";
 import Faqs from "../components/Faqs";
 import Testimonials from "../components/Testimonials";
-import reviews from "../../data";
 import Navbar from "../components/Navbar";
 import "./globals.css";
 import GuideConnect from "@/components/GuideConnect";
