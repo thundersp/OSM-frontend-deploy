@@ -8,7 +8,7 @@ export const metadata = {
   title: "OCDetect",
   description: "Something to detect OCD",
   icons: {
-    icon: "https://res.cloudinary.com/domzgxu5n/image/upload/v1731849965/ht1h8g4uvbdvgjrmniy3.jpg", // Favicon URL
+    icon: "https://res.cloudinary.com/dxqh8y7ko/image/upload/c_crop,h_290,w_290/v1731995140/image-removebg-preview_o0lurf.png", // Favicon URL
   },
 };
 
