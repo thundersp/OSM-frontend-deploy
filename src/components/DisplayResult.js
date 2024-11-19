@@ -1,6 +1,5 @@
 'use client';
-import { useState,useEffect } from "react";
-
+import { useState, useEffect } from "react";
 import "../app/globals.css";
 
 const fieldLabels = {
@@ -13,12 +12,11 @@ const fieldLabels = {
 };
 
 const DisplayResult = ({ result, answers, storyId }) => {
-  const [therapy, setTherapy] = useState(null); // State to store therapy data
+  const [therapy, setTherapy] = useState(null);
 
-  // Fetch therapy details when storyId changes
   useEffect(() => {
     if (storyId) {
-      fetch('https://osm-backend-deploy-1.onrender.com/api/therapy/${storyId}')
+      fetch(`https://osm-backend-deploy-1.onrender.com/api/therapy/${storyId}`)
         .then((response) => response.json())
         .then((data) => {
           setTherapy(data);
@@ -50,8 +48,7 @@ const DisplayResult = ({ result, answers, storyId }) => {
           ))}
         </ul>
 
-        {/* Directly render Therapy details if available */}
-        {therapy && (
+        {therapy && therapy.chapters && (
           <div className="therapy-details mt-6">
             <h3 className="text-2xl text-left text-[#ff4b2b] mb-4">Suggested Therapy</h3>
             <h4 className="text-xl mb-4">{therapy.title}</h4>
