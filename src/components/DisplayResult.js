@@ -18,7 +18,7 @@ const DisplayResult = ({ result, answers, storyId }) => {
   // Fetch therapy details when storyId changes
   useEffect(() => {
     if (storyId) {
-      fetch(`https://osm-backend-deploy-1.onrender.com/api/stories/therapy-suggested/${storyId}`)
+      fetch('https://osm-backend-deploy-1.onrender.com/api/therapy/${storyId}')
         .then((response) => response.json())
         .then((data) => {
           setTherapy(data);
