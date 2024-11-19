@@ -2,6 +2,8 @@
 import React from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import "../globals.css";
+
+import withAuth from '../../../lib/withAuth';
 const Card = ({ title, children }) => (
   <div className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
     <div className="px-4 py-2 bg-gray-50 border-b border-gray-200 font-semibold">{title}</div>
@@ -69,4 +71,4 @@ const OcdAssessmentDashboard = () => {
   );
 };
 
-export default OcdAssessmentDashboard;
+export default withAuth(OcdAssessmentDashboard);

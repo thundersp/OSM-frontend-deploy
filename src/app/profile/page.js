@@ -1,4 +1,5 @@
 "use client";
+import withAuth from '../../../lib/withAuth';
 import "../globals.css";
 import { Line } from "react-chartjs-2";
 import {
@@ -106,7 +107,7 @@ const DefaultProfileSvg = () => (
   </svg>
 );
 
-export default function Profile() {
+function Profile() {
   const [date, setDate] = useState(new Date());
   const [selectedCounselor, setSelectedCounselor] = useState(null);
   const [user, setUser] = useState(null);
@@ -280,3 +281,5 @@ export default function Profile() {
     </main>
   );
 }
+
+export default withAuth(Profile);

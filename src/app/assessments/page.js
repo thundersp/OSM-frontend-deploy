@@ -1,5 +1,5 @@
 'use client';
-
+import withAuth from '../../../lib/withAuth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
@@ -344,4 +344,4 @@ const AssessmentPage = () => {
   );
 };
 
-export default AssessmentPage;
+export default withAuth(AssessmentPage);

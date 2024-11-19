@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-
+import withAuth from '../../../lib/withAuth';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import DisplayResult from '../../../components/DisplayResult';
 import '../../globals.css';
@@ -262,4 +262,4 @@ const StoryDetailPage = () => {
     );
 };
 
-export default StoryDetailPage;
+export default withAuth(StoryDetailPage);

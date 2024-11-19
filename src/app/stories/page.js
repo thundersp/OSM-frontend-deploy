@@ -1,4 +1,5 @@
 'use client';
+import withAuth from '../../../lib/withAuth';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import "../globals.css";
@@ -48,4 +49,4 @@ const StoriesPage = () => {
     );
 };
 
-export default StoriesPage;
+export default withAuth(StoriesPage);
