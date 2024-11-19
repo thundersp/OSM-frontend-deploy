@@ -83,7 +83,7 @@ const StoryDetailPage = () => {
             console.log("Input Data for Prediction:", inputData); // Log prediction data
     
             // First, make the prediction request
-            const predictionResponse = await fetch('https://osm-backend-deploy-w503.onrender.com/predict', {
+            const predictionResponse = await fetch('https://osm-python-backend-deploy-3rre.onrender.com/predict', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(inputData),
