@@ -1,10 +1,10 @@
 "use client";
-import WebcamControl from "@/components/WebcamControl";
+// import WebcamControl from "@/components/WebcamControl";
 import "../../../app/globals.css";
 const Treatment = () => (
   <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-start px-4 py-8">
     <h1 className="text-4xl font-bold text-gray-800 mb-6">Treatment for OCD</h1>
-    <WebcamControl />
+    {/* <WebcamControl /> */}
     <p className="text-lg text-gray-600 mb-12 text-center max-w-2xl">
       Learn about the most effective treatments for Obsessive-Compulsive Disorder (OCD), including therapies, medications, and lifestyle modifications to help manage symptoms and improve your well-being.
     </p>
