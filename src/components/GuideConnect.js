@@ -1,9 +1,9 @@
 import '../app/globals.css';
 const GuideConnect = () => {
     return (
-        <section className="text-center mb-10">
+        <section className="text-center mb-10 p-6 border-2 border-[#ff4b2b] rounded-lg max-w-2xl mx-auto">
             <h2 className="text-3xl font-semibold">Our Guide</h2>
-            <p className="text-lg mt-4 max-w-xl mx-auto">
+            <p className="text-lg mt-4">
                 We are honored to have <strong>Dr. Archana Mule</strong>, a professional psychological counselor, as our expert guide. Her dedication to mental health and well-being empowers our mission to provide accessible support for those managing OCD.
             </p>
             <div className="mt-6">
