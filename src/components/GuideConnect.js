@@ -42,8 +42,8 @@ const GuideConnect = () => {
                             <p><strong className="text-gray-800">Email:</strong> <span className="text-gray-700">archanamulay5@gmail.com</span></p>
                             <p><strong className="text-gray-800">Website:</strong> <span className="text-gray-700">sanvad.com</span></p>
                             <p>
-                                <strong className="text-gray-800">Address:</strong> 
-                                <span className="text-gray-700">Flat no. 3, Near Hotel Appatment, Opp Bank Garden, Rajmahal Vachanaly Road, Ganpati Mandir Javal, Vishrambag, Sangli.</span>
+                                <strong className="text-gray-800">Address: </strong> 
+                                <span className="text-gray-700">Flat no. 3, Near Hotel Appatment, Opp Bank Garden, Rajmahal Vachanaly Road, Near Ganpati Mandir, Vishrambag, Sangli.</span>
                             </p>
                         </div>
                     </div>
