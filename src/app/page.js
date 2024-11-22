@@ -2,11 +2,8 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import Contactus from "../components/Contactus";
 import Faqs from "../components/Faqs";
-import Testimonials from "../components/Testimonials";
-import Navbar from "../components/Navbar";
 import "./globals.css";
 import GuideConnect from "@/components/GuideConnect";
-import WebcamControl from "@/components/WebcamControl";
 
 export default function Home() {
   return (
@@ -19,9 +16,10 @@ export default function Home() {
         <About />
       </section>
 
-      {/* <section id="testimonials">
-        <Testimonials reviews={reviews} />
-        </section> */}
+
+        <section id="guideconnect">
+          <GuideConnect />
+        </section>
 
       <section id="faqs">
         <Faqs />
@@ -30,10 +28,6 @@ export default function Home() {
       <section id="contactus">
         <Contactus />
       </section>
-
-        <section id="guideconnect">
-          <GuideConnect />
-        </section>
     </div>
   );
 }
