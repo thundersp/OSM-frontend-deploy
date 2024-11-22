@@ -79,7 +79,7 @@ const ContactUs = () => {
           </ul>
         </div>
 
-        <div className="mt-12">
+        {/* <div className="mt-12">
           <h2 className="text-gray-800 text-base font-bold">Socials</h2>
 
           <ul className="flex mt-4 space-x-4">
@@ -114,7 +114,7 @@ const ContactUs = () => {
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
 
       <form className="ml-auto space-y-4" onSubmit={handleSubmit}>

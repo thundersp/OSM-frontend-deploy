@@ -40,10 +40,10 @@ const GuideConnect = () => {
                         <div className="space-y-3">
                             <p><strong className="text-gray-800">Contact Number:</strong> <span className="text-gray-700">+91 9823787214</span></p>
                             <p><strong className="text-gray-800">Email:</strong> <span className="text-gray-700">archanamulay5@gmail.com</span></p>
-                            <p><strong className="text-gray-800">Website:</strong> <span className="text-gray-700">sanvad.com</span></p>
+                            {/* <p><strong className="text-gray-800">Website:</strong> <span className="text-gray-700">sanvad.com</span></p> */}
                             <p>
                                 <strong className="text-gray-800">Address: </strong> 
-                                <span className="text-gray-700">Flat no. 3, Near Hotel Appatment, Opp Bank Garden, Rajmahal Vachanaly Road, Near Ganpati Mandir, Vishrambag, Sangli.</span>
+                                <span className="text-gray-700">Flat no. 3, Near Hotel Apartment, Opp. Bank Garden, Rajmahal Vachanaly Road, Near Ganpati Mandir, Vishrambag, Sangli.</span>
                             </p>
                         </div>
                     </div>
